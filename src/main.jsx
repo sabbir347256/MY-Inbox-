@@ -14,6 +14,7 @@ import Mypost from './Components/Pages/Dashboard/Mypost';
 import JoinUs from './Components/Pages/JoinUs/JoinUs';
 import Membership from './Components/Pages/MemberShip/Membership';
 import Authcontext from './Authprovider/Authcontext';
+import ShowDetails from './Components/Pages/ShowDetails/ShowDetails';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -26,7 +27,12 @@ const router = createBrowserRouter([
       {
         path: '/membership',
         element: <Membership></Membership>
-      }
+      },
+      {
+        path: '/getaddpost/:id',
+        element: <ShowDetails></ShowDetails>,
+        loader: () => fetch('http://localhost:5000/getaddpost')
+      },
     ]
   },
   {
