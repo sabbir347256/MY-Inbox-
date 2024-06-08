@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import { GoogleAuthProvider } from "firebase/auth";
 
 const JoinUs = () => {
-    const { googleLogin } = useContext(AuthProvider)
+    const { googleLogin} = useContext(AuthProvider)
     const provider = new GoogleAuthProvider();
     const [success, setSuccess] = useState('');
     const navigate = useNavigate();

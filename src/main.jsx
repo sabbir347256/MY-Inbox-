@@ -15,6 +15,10 @@ import JoinUs from './Components/Pages/JoinUs/JoinUs';
 import Membership from './Components/Pages/MemberShip/Membership';
 import Authcontext from './Authprovider/Authcontext';
 import ShowDetails from './Components/Pages/ShowDetails/ShowDetails';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import UserManage from './Components/Pages/Dashboard/ManageUser/UserManage';
+import AdminProfile from './Components/Pages/Dashboard/AdminProfile/AdminProfile';
+const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
     path: "/",
@@ -54,15 +58,25 @@ const router = createBrowserRouter([
       {
         path: 'dashboard/mypost',
         element: <Mypost></Mypost>
+      },
+      {
+        path: 'dashboard/manageuser',
+        element: <UserManage></UserManage>
+      },
+      {
+        path : 'dashboard/adminprofile',
+        element : <AdminProfile></AdminProfile>
       }
     ]
   }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <Authcontext>
-    <React.StrictMode>
-      <RouterProvider router={router} />
-    </React.StrictMode>
-  </Authcontext>
+  <QueryClientProvider client={queryClient}>
+    <Authcontext>
+      <React.StrictMode>
+        <RouterProvider router={router} />
+      </React.StrictMode>
+    </Authcontext>
+  </QueryClientProvider>
 )

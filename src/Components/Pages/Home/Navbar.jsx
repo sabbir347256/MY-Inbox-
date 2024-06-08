@@ -1,11 +1,52 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AuthProvider } from "../../../Authprovider/Authcontext";
 import Swal from "sweetalert2";
+import HostModal from "../HostRequestModal/HostRequestModal";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Navbar = () => {
-    const {logOut,user} = useContext(AuthProvider);
+    const { logOut, user } = useContext(AuthProvider);
     const navigate = useNavigate();
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const closeModal = () => {
+        setIsModalOpen(false)
+    }
+    const modalHandle = () => {
+        console.log('I want to be a host')
+        try {
+            const currentUser2 = {
+                email: user?.email,
+                role: 'guest',
+                status: 'Requested'
+            }
+
+            fetch(`http://localhost:5000/user`, {
+                method: 'PUT',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(currentUser2)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    if(data.modifiedCount > 0 && data.upsertedCount > 0 ){
+                        toast.success('Succes ! Please wait for admin confirmation');
+                    }
+                    else{
+                        toast.success('Please ! Wait for admin approval');
+                    }
+                })
+        }
+        catch(err) {
+            console.log(err);
+        }finally{
+            closeModal();
+        }
+
+    }
 
 
     const navlinks = <>
@@ -52,10 +93,23 @@ const Navbar = () => {
                         <span className="badge badge-xs badge-primary indicator-item"></span>
                     </div>
                 </button>
+                <div className="hidden md:inline-block">
+                    {/* {
+                        !user &&  */}
+                    <button
+                        disabled={!user}
+                        onClick={() => setIsModalOpen(true)}
+                        className="btn disabled:cursor-not-allowed cursor-pointer hover:bg-neutral-100"
+                    >
+                        Host Your Home
+                    </button>
+                    {/* } */}
+                </div>
+                <HostModal isOpen={isModalOpen} closeModal={closeModal} modalHandle={modalHandle}></HostModal>
                 <div className="dropdown dropdown-end">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
-                            <img alt="Tailwind CSS Navbar component" src={user ? user.photoURL :"https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"} />
+                            <img alt="Tailwind CSS Navbar component" src={user ? user?.photoURL : "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"} />
                         </div>
                     </div>
                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
@@ -65,6 +119,7 @@ const Navbar = () => {
                     </ul>
                 </div>
             </div>
+            <ToastContainer />
         </div>
     );
 };

@@ -2,6 +2,7 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useContext, useEffect, useState } from "react";
 import { AuthProvider } from "../../../Authprovider/Authcontext";
 import goldimage from '../../../image/images.jpeg'
+import { toast } from "react-toastify";
 
 const CheckOutForm = () => {
     const { user } = useContext(AuthProvider);
@@ -64,6 +65,35 @@ const CheckOutForm = () => {
             console.log('confirm error')
         } else {
             console.log('payment intent', paymentIntent)
+            if (paymentIntent.status === 'succeeded') {
+                try {
+                    const currentUser2 = {
+                        email: user?.email,
+                        role: 'Gold Badge',
+                    }
+
+                    fetch(`http://localhost:5000/payment`, {
+                        method: 'PUT',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(currentUser2)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log(data)
+                            if (data.modifiedCount > 0 && data.upsertedCount > 0) {
+                                toast.success('Succes ! Please wait for admin confirmation');
+                            }
+                            else {
+                                toast.success('Please ! Wait for admin approval');
+                            }
+                        })
+                }
+                catch (err) {
+                    console.log(err);
+                }
+            }
         }
 
 

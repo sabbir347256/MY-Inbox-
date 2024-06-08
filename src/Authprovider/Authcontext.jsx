@@ -4,18 +4,40 @@ import { onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
 import auth from './../Firebase/Firebase.config';
 
 export const AuthProvider = createContext();
-const Authcontext = ({children}) => {
-    const [user,setUser] = useState();
-    const [loading,setLoading] = useState(true);
-
+const Authcontext = ({ children }) => {
+    const [user, setUser] = useState();
+    const [loading, setLoading] = useState(true);
     
+    const saveuser = user => {
+        const currentUser2 = {
+            email: user?.email,
+            role: 'guest',
+            status: 'Verified'
+        }
+        console.log(currentUser2)
 
+        fetch(`http://localhost:5000/user`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(currentUser2)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+            })
+    }
     useEffect(() => {
-        const unSubscribe = onAuthStateChanged(auth,currentUser =>{
+        const unSubscribe = onAuthStateChanged(auth, currentUser => {
             // const userEmail = currentUser?.email || user?.email;
             // const loggedUser = {email : userEmail}
             console.log(currentUser)
-            setUser(currentUser);   
+            setUser(currentUser);
+
+            if(currentUser){
+                saveuser(currentUser);
+            }
             setLoading(false);
 
             // if(currentUser){
@@ -31,10 +53,10 @@ const Authcontext = ({children}) => {
             // }
 
         });
-        return () =>{
+        return () => {
             unSubscribe();
         }
-    },[])
+    }, [])
 
 
     const googleLogin = (provider) => {
@@ -42,7 +64,7 @@ const Authcontext = ({children}) => {
         return signInWithPopup(auth, provider);
     }
 
-    const logOut =() =>{
+    const logOut = () => {
         return signOut(auth);
     }
 
@@ -50,7 +72,7 @@ const Authcontext = ({children}) => {
         loading,
         googleLogin,
         user,
-        logOut
+        logOut,
     }
     return (
         <AuthProvider.Provider value={authInfo}>
@@ -59,8 +81,8 @@ const Authcontext = ({children}) => {
     );
 };
 
-Authcontext.propTypes ={
-    children : PropTypes.object
+Authcontext.propTypes = {
+    children: PropTypes.object
 }
 
 export default Authcontext;

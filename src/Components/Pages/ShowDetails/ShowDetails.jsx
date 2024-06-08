@@ -1,12 +1,35 @@
+import { useState } from "react";
+import { BiSolidDownvote, BiSolidUpvote } from "react-icons/bi";
 import { useLoaderData, useParams } from "react-router-dom";
 
 const ShowDetails = () => {
     // const { user, theme } = useContext(AuthProvider)
     const detailsData = useLoaderData();
     // const navigate = useNavigate();
+    const [comment1, setComment] = useState('')
     const { id } = useParams();
     const details = detailsData.find(data => data._id == id);
     const { imageurl, title, descrip, inputField, email } = details;
+
+    const handleCommentChange = e => {
+        setComment(e.target.value)
+    }
+
+    const handleComment = e => {
+        e.preventDefault();
+        const comment = e.target.comment.value;
+        console.log(comment)
+        setComment('')
+    }
+
+    const handlevote = e => {
+        e.preventDefault();
+        const upvote = document.getElementById('upvote');
+        const count = upvote + 1;
+        console.log(count)
+    }
+
+
     return (
         <div className="bg-gray-100 min-h-screen libre-font">
             <div className="max-w-6xl mx-auto">
@@ -17,9 +40,25 @@ const ShowDetails = () => {
                         <h2 className="my-5"><span className="text-red-600">Description : <br /> </span> <span className="font-bold">{descrip}</span></h2>
                         <h2 className="my-5"><span className="text-red-600">Difficulty Level : </span><span className="font-bold">{inputField}</span></h2>
                         <h2 className="my-5"><span className="text-red-600">User Email : </span><span className="font-bold">{email}</span></h2>
-                        <button className="btn bg-[#F97300] btn-success mr-4 text-white mb-16 md:mb-0 lg:mb-0 relative left-10 md:left-0 lg:left-0" onClick={() => document.getElementById('my_modal_1').showModal()}>Comment</button>
+                        <h2 id="upvote">0</h2>
+                        <div className="flex mb-3">
+                            <div className="">
+                                <button onClick={handlevote} className="flex items-center btn btn-primary text-white mr-2 "><BiSolidUpvote></BiSolidUpvote>UpVote</button>
+                               
+                            </div>
+                            <div className="">
+                                <button className="flex items-center btn btn-primary text-white "><BiSolidDownvote></BiSolidDownvote>DownVote</button>
+                                
+                            </div>
+                        </div>
+                        <form onSubmit={handleComment}>
+                            <input onChange={handleCommentChange} value={comment1} className="border-2 border-red-300 rounded-xl p-4" type="text" name="comment" id="" />
+                            <br />
+                            <input className="btn my-4 bg-[#F97300] btn-success text-white" type="submit" value="Comment" /> <br />
+                        </form>
+                        {/* <button className="btn bg-[#F97300] btn-success mr-4 text-white mb-16 md:mb-0 lg:mb-0 relative left-10 md:left-0 lg:left-0" onClick={() => document.getElementById('my_modal_1').showModal()}>Comment</button> */}
                         <button className="btn btn-primary bg-[#F97300] text-white mb-16 md:mb-0 lg:mb-0 relative left-10 md:left-0 lg:left-0">Share</button>
-                        
+
                     </div>
                     <div className="col-span-2 relative bottom-[700px] md:bottom-0 lg:bottom-0 left-5 md:left-0 lg:left-0">
                         <img className="border-2 border-black p-5 rounded-lg" src={imageurl} alt="" />
