@@ -1,21 +1,18 @@
 import PropTypes from 'prop-types'
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import UpdateUserModal from './UpdateUserModal';
 import { useMutation } from '@tanstack/react-query';
-import { AuthProvider } from '../../../../Authprovider/Authcontext';
 const UserDataRow = ({ user }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const {user:loggedinUser} = useContext(AuthProvider);
-
 
   const { mutateAsync } = useMutation({
-    mutationFn: async user => {
-      fetch(`http://localhost:5000/users/update/${loggedinUser?.email}`, {
+    mutationFn: async user2 => {
+      return fetch(`https://assignment-12-server-site-pi.vercel.app/update/${user.email}`, {
         method: 'PATCH',
         headers: {
           'content-type': 'application/json'
         },
-        body: JSON.stringify(user)
+        body: JSON.stringify(user2)
       })
         .then(res => res.json())
         .then(data => {
@@ -23,19 +20,17 @@ const UserDataRow = ({ user }) => {
         })
     }
   });
+  // console.log(user.email)
 
 // console.log(user.email)
   const modalHandler = async (selected) => {
     const user2 ={
       role : selected,
       status : 'verified',
-      email : user?.email,
     }
-
     try{
-      const data = await mutateAsync(user2);
+      await mutateAsync(user2);
       setIsOpen(false);
-      console.log(data)
     }catch(err){
       console.log(err)
     }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import AllTagPost from "./AllTagPost";
 import Banner from "./Banner";
+import { data } from "autoprefixer";
 
 const Home = () => {
     const [addpost, setAddPost] = useState([]);
@@ -10,12 +11,12 @@ const Home = () => {
             .then(res => res.json())
             .then(data => setAddPost(data))
     }, [])
-
+console.log(addpost)
 
     return (
         <div>
             <Banner></Banner>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-12 min-h-screen">
                 {
                     addpost.map(item => <AllTagPost key={item._id} item={item}></AllTagPost>)
                 }

@@ -19,6 +19,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import UserManage from './Components/Pages/Dashboard/ManageUser/UserManage';
 import AdminProfile from './Components/Pages/Dashboard/AdminProfile/AdminProfile';
 import ShowAllComment from './Components/Pages/Dashboard/ShowAllComment';
+import Register from './Components/Pages/JoinUs/Register';
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
@@ -39,14 +40,19 @@ const router = createBrowserRouter([
         loader: () => fetch('http://localhost:5000/getaddpost')
       },
       {
-        path : '/comment',
-        element : <ShowAllComment></ShowAllComment>
+        path : '/comment/:id',
+        element : <ShowAllComment></ShowAllComment>,
+        loader : () => fetch(`http://localhost:5000/comment`)
       }
     ]
   },
   {
     path: '/joinus',
     element: <JoinUs></JoinUs>
+  },
+  {
+    path: '/register',
+    element: <Register></Register>
   },
   {
     path: 'dashboard',

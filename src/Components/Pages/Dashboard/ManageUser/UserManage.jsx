@@ -5,7 +5,7 @@ const UserManage = () => {
     const [manageUsers, setManageUser] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/users')
+        fetch('https://assignment-12-server-site-pi.vercel.app/users')
             .then(res => res.json())
             .then(data => {
                 setManageUser(data)

@@ -14,7 +14,6 @@ const Authcontext = ({ children }) => {
             role: 'guest',
             status: 'Verified'
         }
-        console.log(currentUser2)
 
         fetch(`http://localhost:5000/user`, {
             method: 'PUT',
@@ -25,14 +24,13 @@ const Authcontext = ({ children }) => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+
             })
     }
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
             // const userEmail = currentUser?.email || user?.email;
             // const loggedUser = {email : userEmail}
-            console.log(currentUser)
             setUser(currentUser);
 
             if(currentUser){

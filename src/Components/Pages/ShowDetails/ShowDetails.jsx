@@ -11,6 +11,7 @@ const ShowDetails = () => {
     const [allComment, setAllComment] = useState([]);
     const [comment1, setComment] = useState('')
     const { id } = useParams();
+    console.log(id)
     const details = detailsData.find(data => data._id == id);
     const { imageurl, title, descrip, inputField, email } = details;
 
@@ -25,6 +26,7 @@ const ShowDetails = () => {
         const comment = e.target.comment.value;
         setComment('')
         const userComment = {
+            postId :  id,
             comment: comment,
             name: user?.displayName,
             email: user?.email
