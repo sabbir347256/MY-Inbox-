@@ -26,7 +26,7 @@ const Setmypost = ({ data }) => {
                             number
                         </td>
                         <th>
-                            <NavLink ><button className="btn btn-ghost bg-yellow-300">Comment</button></NavLink>
+                            <NavLink to='/comment'><button className="btn btn-ghost bg-yellow-300">Comment</button></NavLink>
                         </th>
                         <th>
                             <NavLink ><button className="btn btn-ghost bg-red-600 text-white">Delete</button></NavLink>

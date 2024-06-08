@@ -1,6 +1,7 @@
 import { NavLink, Outlet } from "react-router-dom";
 import Navbar from "../Home/Navbar";
 import useRole from "../Hooks/useRole";
+import Footer from "../Home/Footer";
 const Dashboard = () => {
 
     const [role] = useRole();
@@ -43,6 +44,7 @@ const Dashboard = () => {
                     <Outlet></Outlet>
                 </div>
             </div>
+            <Footer></Footer>
         </div>
     );
 };

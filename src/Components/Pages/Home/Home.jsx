@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import AllTagPost from "./AllTagPost";
+import Banner from "./Banner";
 
 const Home = () => {
     const [addpost, setAddPost] = useState([]);
@@ -12,11 +13,15 @@ const Home = () => {
 
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            {
-                addpost.map(item => <AllTagPost key={item._id} item={item}></AllTagPost>)
-            }
+        <div>
+            <Banner></Banner>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-12">
+                {
+                    addpost.map(item => <AllTagPost key={item._id} item={item}></AllTagPost>)
+                }
+            </div>
         </div>
+
     );
 };
 

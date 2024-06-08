@@ -1,15 +1,20 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BiSolidDownvote, BiSolidUpvote } from "react-icons/bi";
 import { useLoaderData, useParams } from "react-router-dom";
+import { AuthProvider } from "../../../Authprovider/Authcontext";
+import SetComment from "./SetComment";
 
 const ShowDetails = () => {
-    // const { user, theme } = useContext(AuthProvider)
+    const { user } = useContext(AuthProvider)
     const detailsData = useLoaderData();
     // const navigate = useNavigate();
+    const [allComment, setAllComment] = useState([]);
     const [comment1, setComment] = useState('')
     const { id } = useParams();
     const details = detailsData.find(data => data._id == id);
     const { imageurl, title, descrip, inputField, email } = details;
+
+
 
     const handleCommentChange = e => {
         setComment(e.target.value)
@@ -18,9 +23,29 @@ const ShowDetails = () => {
     const handleComment = e => {
         e.preventDefault();
         const comment = e.target.comment.value;
-        console.log(comment)
         setComment('')
+        const userComment = {
+            comment: comment,
+            name: user?.displayName,
+            email: user?.email
+        }
+        fetch(`http://localhost:5000/comment`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(userComment)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+            })
     }
+    useEffect(() => {
+        fetch('http://localhost:5000/comment')
+            .then(res => res.json())
+            .then(data => setAllComment(data))
+    }, [])
 
     const handlevote = e => {
         e.preventDefault();
@@ -28,6 +53,7 @@ const ShowDetails = () => {
         const count = upvote + 1;
         console.log(count)
     }
+
 
 
     return (
@@ -44,11 +70,11 @@ const ShowDetails = () => {
                         <div className="flex mb-3">
                             <div className="">
                                 <button onClick={handlevote} className="flex items-center btn btn-primary text-white mr-2 "><BiSolidUpvote></BiSolidUpvote>UpVote</button>
-                               
+
                             </div>
                             <div className="">
                                 <button className="flex items-center btn btn-primary text-white "><BiSolidDownvote></BiSolidDownvote>DownVote</button>
-                                
+
                             </div>
                         </div>
                         <form onSubmit={handleComment}>
@@ -62,7 +88,19 @@ const ShowDetails = () => {
                     </div>
                     <div className="col-span-2 relative bottom-[700px] md:bottom-0 lg:bottom-0 left-5 md:left-0 lg:left-0">
                         <img className="border-2 border-black p-5 rounded-lg" src={imageurl} alt="" />
+                        <div className="border-2 mt-4">
+                            <h2 className="text-center text-2xl font-bold mb-5">Comment Section</h2>
+                            <div className="px-2">
+                                {
+                                    allComment.slice(0, 2).map(c => <SetComment key={c._id} c={c} allComment={allComment} ></SetComment>)
+                                }
+                                {
+                                    allComment.length > 2 && <button className="btn btn-primary my-3">Show All Comment</button>
+                                }
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>

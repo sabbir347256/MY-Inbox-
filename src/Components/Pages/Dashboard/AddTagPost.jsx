@@ -1,10 +1,13 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BiSolidDownvote, BiSolidUpvote } from "react-icons/bi";
 import { AuthProvider } from "../../../Authprovider/Authcontext";
+import { toast } from "react-toastify";
 
 const AddTagPost = () => {
 
     const {user} = useContext(AuthProvider);
+    const [specifiquserPost,setSpecifiqUserPost] = useState([]);
+
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -31,10 +34,22 @@ const AddTagPost = () => {
             .then(data => {
 
             })
-
-
     }
 
+    useEffect(() => {
+        fetch(`http://localhost:5000/getaddpost?email=${user?.email}`)
+            .then(res => res.json())
+            .then(data => {
+                const filterData = data?.filter(singleData => singleData?.email == user?.email)
+                setSpecifiqUserPost(filterData);
+            })
+    }, [user?.email]);
+
+    if(specifiquserPost.length > 5 ){
+        alert('You have allready 5 post.More than post please Collect membership')
+    }
+
+    
     return (
         <div className=' min-h-screen raleway bg-gray-100'>
             <form onSubmit={handleSubmit} className="top-10 md:top-10 lg:top-0 p-10 lg:p-16 lg:pl-20 relative">
