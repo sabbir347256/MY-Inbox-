@@ -1,8 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { BiSolidDownvote, BiSolidUpvote } from "react-icons/bi";
 import { AuthProvider } from "../../../Authprovider/Authcontext";
-import { toast } from "react-toastify";
-
 const AddTagPost = () => {
 
     const {user} = useContext(AuthProvider);
@@ -23,6 +21,7 @@ const AddTagPost = () => {
         const upvote = form.upvote.value;
         const user1 = { title, descrip, imageurl,downbote,upvote,postTitle,postTime, inputField, email };
         console.log(user1)
+        
         fetch(`http://localhost:5000/addpost`, {
             method: 'POST',
             headers: {

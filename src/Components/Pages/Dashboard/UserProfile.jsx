@@ -1,28 +1,30 @@
-import { useContext, useState } from "react";
+import { useContext} from "react";
 import { AuthProvider } from "../../../Authprovider/Authcontext";
 import badgeImage from '../../../image/images.jpeg'
 import bronzebadge from '../../../image/bronze.png'
 import { NavLink } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 const UserProfile = () => {
     const { user, loading } = useContext(AuthProvider);
-    const [membership, setMembership] = useState('');
 
-    fetch(`http://localhost:5000/paymentUser/${user?.email}`)
-        .then(res => res.json())
-        .then(data => {
-            setMembership(data);
-        })
-
-
+    const { data } = useQuery({
+        queryKey: ['GET', user?.email],
+        queryFn: () => {
+            return fetch(`http://localhost:5000/paymentUser/${user?.email}`)
+                .then(res => res.json())
+                .then(data => {
+                    return (data);
+                })
+        }
+    });
     if (loading) {
         return <p className="text-red-600 text-center"><span className="loading loading-infinity loading-lg"></span></p>;
     }
-    console.log(user.photoURL)
     return (
         <div>
             <div className="flex justify-center">
                 {
-                    membership.role === 'Gold Badge' ? <h2 className="relative top-20 text-2xl">You are a MemberShip Person</h2> : <h2 className="relative top-20 text-2xl">If You are interested for MemberShip please click Membership button </h2>
+                    data?.role === 'Gold Badge' ? <h2 className="relative top-20 text-2xl">You are a MemberShip Person</h2> : <h2 className="relative top-20 text-2xl">If You are interested for MemberShip please click Membership button </h2>
                 }
             </div>
             <div className='flex justify-center mt-32'>
@@ -33,7 +35,7 @@ const UserProfile = () => {
                         className='w-full mb-4 rounded-t-lg h-36'
                     />
                     {
-                        membership.role === 'Gold Badge' ? <div>
+                        data?.role === 'Gold Badge' ? <div>
                             <img className="w-12 ml-5" src={badgeImage} alt="" />
                             <h2 className="ml-1 font-bold">Gold Badge</h2>
                         </div> : <div>
@@ -42,7 +44,7 @@ const UserProfile = () => {
                         </div>
                     }
                     {
-                        membership.role === 'Gold Badge' ? '' : <div className="flex justify-end relative bottom-16  pr-2">
+                        data?.role === 'Gold Badge' ? '' : <div className="flex justify-end relative bottom-16  pr-2">
                             <button className="btn btn-primary"><NavLink to='/membership'>Membership</NavLink></button>
                         </div>
                     }

@@ -19,20 +19,14 @@ const Mypost = () => {
         }
     });
 
+    if(isLoading){
+        return <p className="text-red-600 text-center"><span className="loading loading-infinity loading-lg"></span></p>;
+    }
 
-
-    // useEffect(() => {
-    //     fetch(`http://localhost:5000/getaddpost?email=${user?.email}`)
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             const filterData = data?.filter(singleData => singleData?.email == user?.email)
-    //             setMypost(filterData);
-    //         })
-    // }, [user?.email]);
     return (
         <div className="min-h-screen">
             {
-                data?.map(data => <Setmypost key={data._id} data={data}></Setmypost>)
+                data?.map(data => <Setmypost key={data._id} data={data} refetch={refetch}></Setmypost>)
             }
         </div>
     );

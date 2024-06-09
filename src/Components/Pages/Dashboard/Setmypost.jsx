@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import PropTypes from 'prop-types'
 import Swal from "sweetalert2";
-const Setmypost = ({ data }) => {
+const Setmypost = ({ data ,refetch}) => {
     const { _id, postTitle } = data;
 
     const handleDelete = (id) => {
@@ -32,6 +32,7 @@ const Setmypost = ({ data }) => {
                                 icon: "success"
                             });
                         }
+                        refetch();
                     })
 
             }

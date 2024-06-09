@@ -1,17 +1,21 @@
-import { useEffect, useState } from "react";
 import UserDataRow from "./UserDataRow ";
+import { useQuery } from "@tanstack/react-query";
 
 const UserManage = () => {
-    const [manageUsers, setManageUser] = useState([]);
+    const { data, isLoading } = useQuery({
+        queryKey: ['GET'],
+        queryFn: () => {
+            return fetch('https://assignment-12-server-site-pi.vercel.app/users')
+                .then(res => res.json())
+                .then(data => {
+                    return data
+                })
+        }
+    });
 
-    useEffect(() => {
-        fetch('https://assignment-12-server-site-pi.vercel.app/users')
-            .then(res => res.json())
-            .then(data => {
-                setManageUser(data)
-            })
-    }, [])
-
+    if (isLoading) {
+        return <p className="text-red-600 text-center"><span className="loading loading-infinity loading-lg"></span></p>;
+    }
 
     return (
         <div className='container mx-auto px-4 sm:px-8'>
@@ -51,7 +55,7 @@ const UserManage = () => {
                             <tbody>
 
                                 {
-                                    manageUsers.map(user => <UserDataRow key={user._id} user={user}></UserDataRow>)
+                                    data.map(user => <UserDataRow key={user._id} user={user}></UserDataRow>)
                                 }
 
                             </tbody>

@@ -17,11 +17,12 @@ const ShowAllComment = () => {
         setIsReportButtonDisabled(true);
     };
     const commentsData = useLoaderData();
+    console.log(commentsData)
     // const navigate = useNavigate();
     const { id } = useParams();
     console.log(id)
     const comments = commentsData.find(data => data?.postId == id);
-    
+
 
     // useEffect(() => {
     //     fetch(`http://localhost:5000/comment/${manageAllComment._id}`)
@@ -31,50 +32,57 @@ const ShowAllComment = () => {
 
     return (
         <div className='mt-5 overflow-x-auto min-h-screen'>
-        <table className="table">
-            {/* head */}
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Comment</th>
-                    <th>FeedBack</th>
-                </tr>
-            </thead>
-            <tbody>
-                {/* row 1 */}
-                <tr>
-                    <td>
-                        <div className="flex items-center gap-3">
-                            <div>
-                                <div className="font-bold">{comments?.name}</div>
-                            </div>
-                        </div>
-                    </td>
-                    <td className='font-bold'>
-                        {comments?.email}
-                    </td>
-                    <td className='font-bold'>
-                        {comments?.comment}
-                    </td>
-                    <th>
-                        <select onChange={handleFeedbackChange} value={selectedFeedback}>
-                            <option value="">Select feedback</option>
-                            <option value="Inappropriate content">Inappropriate content</option>
-                            <option value="Spam">Spam</option>
-                            <option value="Harassment">Harassment</option>
-                        </select>
-                    </th>
-                    <th>
-                        <NavLink ><button onClick={handleReportClick}
-                            disabled={isReportButtonDisabled} className="btn btn-ghost bg-red-600 text-white">Report</button></NavLink>
-                    </th>
-                </tr>
-            </tbody>
-            {/* foot */}
+            {
+                comments?.email ? <table className="table">
+                    {/* head */}
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Comment</th>
+                            <th>FeedBack</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {/* row 1 */}
+                        <tr>
+                            <td>
+                                <div className="flex items-center gap-3">
+                                    <div>
+                                        <div className="font-bold">{comments?.name}</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td className='font-bold'>
+                                {comments?.email}
+                            </td>
+                            <td className='font-bold'>
+                                {comments?.comment}
+                            </td>
+                            <th>
+                                <select onChange={handleFeedbackChange} value={selectedFeedback}>
+                                    <option value="">Select feedback</option>
+                                    <option value="Inappropriate content">Inappropriate content</option>
+                                    <option value="Spam">Spam</option>
+                                    <option value="Harassment">Harassment</option>
+                                </select>
+                            </th>
+                            <th>
+                                <NavLink ><button onClick={handleReportClick}
+                                    disabled={isReportButtonDisabled} className="btn btn-ghost bg-red-600 text-white">Report</button></NavLink>
+                            </th>
+                        </tr>
+                    </tbody>
+                    {/* foot */}
 
-        </table>
-    </div>
+                </table> : <div className="flex items-center justify-center min-h-screen">
+                    <div className="border w-80 bg-green-200 rounded-lg p-10 text-center ">
+                        <h2 className="text-2xl font-bold text-blue-600">Here is no comment</h2>
+                        <butto className='btn mt-3 font-semibold'><NavLink to='/'>Back to Home</NavLink></butto>
+                    </div>
+                </div>
+            }
+        </div>
     );
 };
 
