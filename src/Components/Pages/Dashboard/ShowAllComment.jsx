@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { NavLink, useLoaderData, useParams } from "react-router-dom";
+import { AuthProvider } from "../../../Authprovider/Authcontext";
 
 const ShowAllComment = () => {
+    const { user } = useContext(AuthProvider);
     const [selectedFeedback, setSelectedFeedback] = useState('');
     const [isReportButtonDisabled, setIsReportButtonDisabled] = useState(true);
 
@@ -11,16 +13,32 @@ const ShowAllComment = () => {
         setIsReportButtonDisabled(feedback === '');
     };
 
-
     const handleReportClick = () => {
         console.log('Reported for:', selectedFeedback);
+        const userInfo = {
+            report: selectedFeedback,
+            email: user?.email,
+            comment : comments?.comment
+        }
+
+        fetch(`http://localhost:5000/showallreport`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(userInfo)
+
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+            })
+
         setIsReportButtonDisabled(true);
     };
     const commentsData = useLoaderData();
-    console.log(commentsData)
     // const navigate = useNavigate();
     const { id } = useParams();
-    console.log(id)
     const comments = commentsData.find(data => data?.postId == id);
 
 
@@ -31,7 +49,7 @@ const ShowAllComment = () => {
     // }, [])
 
     return (
-        <div className='mt-5 overflow-x-auto min-h-screen'>
+        <div className='mt-5 overflow-x-auto min-h-screen' >
             {
                 comments?.email ? <table className="table">
                     {/* head */}
@@ -75,14 +93,14 @@ const ShowAllComment = () => {
                     </tbody>
                     {/* foot */}
 
-                </table> : <div className="flex items-center justify-center min-h-screen">
+                </table > : <div className="flex items-center justify-center min-h-screen">
                     <div className="border w-80 bg-green-200 rounded-lg p-10 text-center ">
                         <h2 className="text-2xl font-bold text-blue-600">Here is no comment</h2>
                         <butto className='btn mt-3 font-semibold'><NavLink to='/'>Back to Home</NavLink></butto>
                     </div>
                 </div>
             }
-        </div>
+        </div >
     );
 };
 

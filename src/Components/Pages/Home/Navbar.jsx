@@ -120,7 +120,7 @@ const Navbar = () => {
                             <a href="/notifications" className="text-black text-lg">
                                 <FaBell />
                             </a>
-                            <div className="relative group">
+                            <div className="relative group z-10">
                                 {
                                     user ? <img className=" rounded-full w-12 cursor-pointer" src={user?.photoURL} alt="" /> :<FaUserCircle className="text-black text-2xl cursor-pointer" />
                                 }

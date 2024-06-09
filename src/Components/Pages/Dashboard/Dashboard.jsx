@@ -15,7 +15,7 @@ const Dashboard = () => {
                             role === 'admin' && <li className="font-medium text-base"><NavLink to='dashboard/adminprofile'>Admin Profile</NavLink></li>
                         }
                         {
-                            role === 'admin' && <li className="font-medium text-base"><NavLink to='/dsaf'>Reported Comments</NavLink></li>
+                            role === 'admin' && <li className="font-medium text-base"><NavLink to='dashboard/allReport'>Reported Comments</NavLink></li>
                         }
                         {
                             role === 'admin' && <li className="font-medium text-base"><NavLink to='/dssadaf'>Make Announcement

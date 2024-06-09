@@ -20,6 +20,7 @@ import UserManage from './Components/Pages/Dashboard/ManageUser/UserManage';
 import AdminProfile from './Components/Pages/Dashboard/AdminProfile/AdminProfile';
 import ShowAllComment from './Components/Pages/Dashboard/ShowAllComment';
 import Register from './Components/Pages/JoinUs/Register';
+import Allreport from './Components/Pages/Dashboard/Allreport/Allreport';
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
@@ -77,7 +78,11 @@ const router = createBrowserRouter([
       {
         path : 'dashboard/adminprofile',
         element : <AdminProfile></AdminProfile>
-      }
+      },
+      {
+        path : 'dashboard/allReport',
+        element : <Allreport></Allreport>
+      },
     ]
   }
 ]);
