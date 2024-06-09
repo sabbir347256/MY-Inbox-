@@ -16,7 +16,7 @@ console.log(addpost)
     return (
         <div>
             <Banner></Banner>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-12 min-h-screen">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pb-12 min-h-screen allPostBg mt-4">
                 {
                     addpost.map(item => <AllTagPost key={item._id} item={item}></AllTagPost>)
                 }

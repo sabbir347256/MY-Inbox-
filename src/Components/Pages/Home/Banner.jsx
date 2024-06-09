@@ -1,6 +1,6 @@
 const Banner = () => {
   return (
-    <div className="bg-blue-500 text-white py-10">
+    <div className="bg-blue-500 text-white py-10 bannerBg">
       <div className="container mx-auto px-4">
         <h1 className="text-4xl font-bold mb-4 text-center">Welcome to MyInbox</h1>
         <p className="text-lg mb-8 text-center">Stay connected with your friends and family through our seamless chat experience.</p>

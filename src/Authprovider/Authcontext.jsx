@@ -35,6 +35,7 @@ const Authcontext = ({ children }) => {
 
             if(currentUser){
                 saveuser(currentUser);
+                console.log(currentUser)
             }
             setLoading(false);
 
