@@ -20,7 +20,7 @@ const Setmypost = ({ data ,refetch}) => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/deletePost/${id}`, {
+                fetch(`https://assignment-12-server-site-pi.vercel.app/deletePost/${id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())

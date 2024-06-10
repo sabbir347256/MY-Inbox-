@@ -21,6 +21,7 @@ import AdminProfile from './Components/Pages/Dashboard/AdminProfile/AdminProfile
 import ShowAllComment from './Components/Pages/Dashboard/ShowAllComment';
 import Register from './Components/Pages/JoinUs/Register';
 import Allreport from './Components/Pages/Dashboard/Allreport/Allreport';
+import Announcement from './Components/Pages/Dashboard/MakeAnnouncement/Announcement';
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
@@ -38,12 +39,12 @@ const router = createBrowserRouter([
       {
         path: '/getaddpost/:id',
         element: <ShowDetails></ShowDetails>,
-        loader: () => fetch('http://localhost:5000/getaddpost')
+        loader: () => fetch('https://assignment-12-server-site-pi.vercel.app/getaddpost')
       },
       {
         path : '/comment/:id',
         element : <ShowAllComment></ShowAllComment>,
-        loader : () => fetch(`http://localhost:5000/comment`)
+        loader : () => fetch(`https://assignment-12-server-site-pi.vercel.app/comment`)
       }
     ]
   },
@@ -82,6 +83,10 @@ const router = createBrowserRouter([
       {
         path : 'dashboard/allReport',
         element : <Allreport></Allreport>
+      },
+      {
+        path : 'dashboard/announcement',
+        element : <Announcement></Announcement>
       },
     ]
   }

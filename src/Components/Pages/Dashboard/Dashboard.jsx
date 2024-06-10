@@ -8,31 +8,31 @@ const Dashboard = () => {
     return (
         <div>
             <Navbar></Navbar>
-            <div className="flex">
-                <div className=" w-64 min-h-screen bg-orange-400">
-                    <ul className="menu p-4">
+            <div className="flex flex-col md:flex-row pb-14 md:pb-0">
+                <div className="  md:min-h-screen bg-orange-400 ">
+                    <ul className="menu w-screen md:w-auto md:p-4">
                         {
-                            role === 'admin' && <li className="font-medium text-base"><NavLink to='dashboard/adminprofile'>Admin Profile</NavLink></li>
+                            role === 'admin' && <li className="font-medium text-base "><NavLink to='dashboard/adminprofile'>Admin Profile</NavLink></li>
                         }
                         {
-                            role === 'admin' && <li className="font-medium text-base"><NavLink to='dashboard/allReport'>Reported Comments</NavLink></li>
+                            role === 'admin' && <li className="font-medium  "><NavLink to='dashboard/allReport'>Reported Comments</NavLink></li>
                         }
                         {
-                            role === 'admin' && <li className="font-medium text-base"><NavLink to='/dssadaf'>Make Announcement
+                            role === 'admin' && <li className="font-medium  "><NavLink to='dashboard/announcement'>Make Announcement
                             </NavLink></li>
                         }
                         {
-                            role === 'admin' && <li className="font-medium text-base"><NavLink to='dashboard/manageuser'>Manage Users</NavLink></li>
+                            role === 'admin' && <li className="font-medium  "><NavLink to='dashboard/manageuser'>Manage Users</NavLink></li>
                         }
                         
                         {
-                            role === 'guest' && <li className="font-medium text-base"><NavLink to='dashboard/myprofile'>My Profile</NavLink></li>
+                            role === 'guest' && <li className="font-medium  "><NavLink to='dashboard/myprofile'>My Profile</NavLink></li>
                         }
                         {
-                            role === 'guest' && <li className="font-medium text-base"><NavLink to='dashboard/addpost'>Add Post</NavLink></li>
+                            role === 'guest' && <li className="font-medium  "><NavLink to='dashboard/addpost'>Add Post</NavLink></li>
                         }
                         {
-                            role === 'guest' && <li className="font-medium text-base"><NavLink to='dashboard/mypost'>My Post</NavLink></li>
+                            role === 'guest' && <li className="font-medium  "><NavLink to='dashboard/mypost'>My Post</NavLink></li>
                         }
                         
                         

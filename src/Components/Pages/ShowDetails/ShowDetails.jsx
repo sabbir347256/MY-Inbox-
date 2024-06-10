@@ -31,7 +31,7 @@ const ShowDetails = () => {
             name: user?.displayName,
             email: user?.email
         }
-        fetch(`http://localhost:5000/comment`, {
+        fetch(`https://assignment-12-server-site-pi.vercel.app/comment`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -44,7 +44,7 @@ const ShowDetails = () => {
             })
     }
     useEffect(() => {
-        fetch('http://localhost:5000/comment')
+        fetch('https://assignment-12-server-site-pi.vercel.app/comment')
             .then(res => res.json())
             .then(data => setAllComment(data))
     }, [])

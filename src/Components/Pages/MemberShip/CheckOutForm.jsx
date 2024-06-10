@@ -13,7 +13,7 @@ const CheckOutForm = () => {
     const data = { price: 100 }
 
     useEffect(() => {
-        fetch('http://localhost:5000/create-payment-intent', {
+        fetch('https://assignment-12-server-site-pi.vercel.app/create-payment-intent', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -44,7 +44,6 @@ const CheckOutForm = () => {
         });
 
         if (error) {
-            console.log('[error]', error);
             setError(error.message);
         } else {
             console.log('[PaymentMethod]', paymentMethod);
@@ -72,7 +71,7 @@ const CheckOutForm = () => {
                         role: 'Gold Badge',
                     }
 
-                    fetch(`http://localhost:5000/payment`, {
+                    fetch(`https://assignment-12-server-site-pi.vercel.app/payment`, {
                         method: 'PUT',
                         headers: {
                             'content-type': 'application/json'
@@ -81,12 +80,11 @@ const CheckOutForm = () => {
                     })
                         .then(res => res.json())
                         .then(data => {
-                            console.log(data)
                             if (data.modifiedCount > 0 && data.upsertedCount > 0) {
-                                toast.success('Succes ! Please wait for admin confirmation');
+                                toast.success('Succes ! Now you are a membership of our community.');
                             }
                             else {
-                                toast.success('Please ! Wait for admin approval');
+                                toast.success('All Ready you are a membership our community');
                             }
                         })
                 }

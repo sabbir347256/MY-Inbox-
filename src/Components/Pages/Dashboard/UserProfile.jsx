@@ -4,13 +4,15 @@ import badgeImage from '../../../image/images.jpeg'
 import bronzebadge from '../../../image/bronze.png'
 import { NavLink } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import useRole from "../Hooks/useRole";
 const UserProfile = () => {
     const { user, loading } = useContext(AuthProvider);
+    const [role] = useRole();
 
     const { data } = useQuery({
         queryKey: ['GET', user?.email],
         queryFn: () => {
-            return fetch(`http://localhost:5000/paymentUser/${user?.email}`)
+            return fetch(`https://assignment-12-server-site-pi.vercel.app/paymentUser/${user?.email}`)
                 .then(res => res.json())
                 .then(data => {
                     return (data);
@@ -59,7 +61,7 @@ const UserProfile = () => {
                         </a>
 
                         <p className='p-2 px-4 text-xs text-white bg-pink-500 rounded-full'>
-                            Admin
+                            {role}
                         </p>
                         <div className='w-full p-2 mt-4 rounded-lg'>
                             <div className='flex flex-wrap items-center justify-between text-sm text-gray-600 '>
@@ -73,15 +75,6 @@ const UserProfile = () => {
                                     Email
                                     <span className='font-bold text-black '>{user.email}</span>
                                 </p>
-
-                                <div>
-                                    <button className='bg-[#F43F5E] px-10 py-1 rounded-lg text-white cursor-pointer hover:bg-[#af4053] block mb-1'>
-                                        Update Profile
-                                    </button>
-                                    <button className='bg-[#F43F5E] px-7 py-1 rounded-lg text-white cursor-pointer hover:bg-[#af4053]'>
-                                        Change Password
-                                    </button>
-                                </div>
                             </div>
                         </div>
                     </div>

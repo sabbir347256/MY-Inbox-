@@ -21,7 +21,7 @@ const ShowAllComment = () => {
             comment : comments?.comment
         }
 
-        fetch(`http://localhost:5000/showallreport`, {
+        fetch(`https://assignment-12-server-site-pi.vercel.app/showallreport`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -43,7 +43,7 @@ const ShowAllComment = () => {
 
 
     // useEffect(() => {
-    //     fetch(`http://localhost:5000/comment/${manageAllComment._id}`)
+    //     fetch(`https://assignment-12-server-site-pi.vercel.app/comment/${manageAllComment._id}`)
     //         .then(res => res.json())
     //         .then(data => setAllComment(data))
     // }, [])

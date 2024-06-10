@@ -2,7 +2,7 @@ import UserDataRow from "./UserDataRow ";
 import { useQuery } from "@tanstack/react-query";
 
 const UserManage = () => {
-    const { data, isLoading } = useQuery({
+    const { data, isLoading, } = useQuery({
         queryKey: ['GET'],
         queryFn: () => {
             return fetch('https://assignment-12-server-site-pi.vercel.app/users')

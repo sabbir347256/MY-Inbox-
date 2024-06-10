@@ -10,7 +10,7 @@ const Mypost = () => {
     const { data,isLoading,refetch} = useQuery({
         queryKey: ['post', user?.email],
         queryFn: () => {
-           return fetch(`http://localhost:5000/getaddpost?email=${user?.email}`)
+           return fetch(`https://assignment-12-server-site-pi.vercel.app/getaddpost?email=${user?.email}`)
                 .then(res => res.json())
                 .then(data => {
                     const filterData = data?.filter(singleData => singleData?.email == user?.email)

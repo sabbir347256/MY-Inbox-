@@ -30,7 +30,7 @@ const Navbar = () => {
                 status: 'Requested'
             }
 
-            fetch(`http://localhost:5000/user`, {
+            fetch(`https://assignment-12-server-site-pi.vercel.app/user`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'

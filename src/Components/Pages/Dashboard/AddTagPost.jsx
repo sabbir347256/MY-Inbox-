@@ -22,7 +22,7 @@ const AddTagPost = () => {
         const user1 = { title, descrip, imageurl,downbote,upvote,postTitle,postTime, inputField, email };
         console.log(user1)
         
-        fetch(`http://localhost:5000/addpost`, {
+        fetch(`https://assignment-12-server-site-pi.vercel.app/addpost`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -36,7 +36,7 @@ const AddTagPost = () => {
     }
 
     useEffect(() => {
-        fetch(`http://localhost:5000/getaddpost?email=${user?.email}`)
+        fetch(`https://assignment-12-server-site-pi.vercel.app/getaddpost?email=${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 const filterData = data?.filter(singleData => singleData?.email == user?.email)

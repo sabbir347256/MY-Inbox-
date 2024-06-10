@@ -9,7 +9,7 @@ const useRole = () => {
         queryKey: ['role', user?.email],
         enabled: !loading && !!user?.email,
         queryFn: async () =>
-            fetch(`http://localhost:5000/user/${user?.email}`)
+            fetch(`https://assignment-12-server-site-pi.vercel.app/user/${user?.email}`)
                 .then(res => res.json())
                 .then(data => {
                     return data.role

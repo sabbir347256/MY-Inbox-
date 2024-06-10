@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 const AllTagPost = ({ item }) => {
     const {_id,inputField,postTime, title, descrip, imageurl } = item;
     return ( 
-        <div className="card w-96 bg-base-300 shadow-xl text-center pt-10 mt-32 mx-10">
+        <div className="card w-80 md:w-80 bg-base-300 shadow-xl text-center pt-10 mt-32 mx-7">
             <figure><img className="rounded-full" src={imageurl} alt="Shoes" /></figure>
             <div className="card-body">
                 <h2 className="card-title flex justify-center">
