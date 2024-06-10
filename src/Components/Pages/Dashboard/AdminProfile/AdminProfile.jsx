@@ -10,7 +10,6 @@ const AdminProfile = () => {
     const [report, setreport] = useState([])
 
     
-
     const { data, isloading } = useQuery({
         queryKey: ['role'],
         queryFn: async () =>
@@ -39,7 +38,7 @@ const AdminProfile = () => {
     }, [])
 
     const data1 = [
-        { name: 'Post', value:  data?.length},
+        { name: 'Post', value: data?.length },
         { name: 'Comment', value: comment?.length },
         { name: 'Report', value: report?.length },
     ];

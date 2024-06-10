@@ -12,7 +12,6 @@ const Home = () => {
             .then(res => res.json())
             .then(data => setAddPost(data))
     }, [])
-console.log(addpost)
 
     return (
         <div>

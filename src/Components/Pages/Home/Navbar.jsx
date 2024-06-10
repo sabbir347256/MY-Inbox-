@@ -71,12 +71,14 @@ const Navbar = () => {
                 <span className="block h-0.5 bg-white group-hover:bg-red-500 transition-all duration-300 ease-in-out scale-x-0 group-hover:scale-x-100"></span>
             </NavLink>
         </li>
-        <li className="relative group">
-            <NavLink to='/joinus' className="text-black text-lg transition duration-300 ease-in-out transform group-hover:text-red-500">
-                Join Us
-                <span className="block h-0.5 bg-white group-hover:bg-red-500 transition-all duration-300 ease-in-out scale-x-0 group-hover:scale-x-100"></span>
-            </NavLink>
-        </li>
+        {
+            !user && <li className="relative group">
+                <NavLink to='/joinus' className="text-black text-lg transition duration-300 ease-in-out transform group-hover:text-red-500">
+                    Join Us
+                    <span className="block h-0.5 bg-white group-hover:bg-red-500 transition-all duration-300 ease-in-out scale-x-0 group-hover:scale-x-100"></span>
+                </NavLink>
+            </li>
+        }
     </>
 
 
@@ -122,12 +124,15 @@ const Navbar = () => {
                             </a>
                             <div className="relative group z-10">
                                 {
-                                    user ? <img className=" rounded-full w-12 cursor-pointer" src={user?.photoURL} alt="" /> :<FaUserCircle className="text-black text-2xl cursor-pointer" />
+                                    user ? <img className=" rounded-full w-12 cursor-pointer" src={user?.photoURL} alt="" /> : <FaUserCircle className="text-black text-2xl cursor-pointer" />
                                 }
+                                <FaUserCircle className={!user && 'text-black text-2xl cursor-pointer hidden'} />
                                 <div className="absolute right-0 mt-1 hidden group-hover:block bg-gray-300 p-2 rounded shadow-lg">
                                     <div className="block px-4 py-2 font-semibold text-black">{user ? <p>{user?.displayName}</p> : <p>Username</p>}</div>
                                     <a href="/dashboard" className="block px-4 py-2 text-black hover:bg-gray-400 rounded">Dashboard</a>
-                                    <button onClick={handleSignOut} className="block px-4 py-2 text-black hover:bg-gray-400 rounded">Logout</button>
+                                    {
+                                        user && <button onClick={handleSignOut} className="block px-4 py-2 text-black hover:bg-gray-400 rounded">Logout</button>
+                                    }
                                 </div>
                             </div>
                         </div>

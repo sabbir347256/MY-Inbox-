@@ -7,15 +7,35 @@ import Swal from "sweetalert2";
 import { GoogleAuthProvider } from "firebase/auth";
 
 const JoinUs = () => {
-    const { googleLogin} = useContext(AuthProvider)
+    const { googleLogin,signIn } = useContext(AuthProvider)
     const provider = new GoogleAuthProvider();
     const [success, setSuccess] = useState('');
     const navigate = useNavigate();
+    const [emailnotMatch, setemailnotMatch] = useState();
+
 
     const { register, handleSubmit, formState: { errors }, } = useForm();
 
-    const onsubmit = (data) => {
-        console.log(data)
+    const onsubmit = data => {
+        const email = data.email;
+        const pass = data.pass;
+        signIn(email, pass)
+            .then(res => {
+                setSuccess(
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Log In Succesfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                );
+                navigate(location?.state ? location.state : '/')
+
+            })
+            .catch(error => {
+                setemailnotMatch('Email does not match. Please provide a correct email');
+            })
     }
 
     const googleAccount = () => {
@@ -40,26 +60,18 @@ const JoinUs = () => {
 
     return (
         <div className="hero min-h-screen bg-base-200">
-            <div className="hero-content flex-col lg:flex-row-reverse">
-                <div className="text-center lg:text-left">
-                    <h1 className="text-5xl font-bold">Sign Up</h1>
-                    <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-                </div>
+            <div className="hero-content ">
                 <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                     <form onSubmit={handleSubmit(onsubmit)} className="card-body">
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Name</span>
-                            </label>
-                            <input type="text" {...register("name", { required: true })} placeholder="name here" className="input input-bordered" />
-                            {errors.name && <span className="text-red-400">This field is required</span>}
-                        </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
                             <input type="email" {...register("email", { required: true })} name="email" placeholder="email" className="input input-bordered" />
                             {errors.name && <span className="text-red-400">This field is required</span>}
+                            {
+                                emailnotMatch && <p className="text-red-500 font-medium">{emailnotMatch}</p>
+                            }
                         </div>
                         <div className="form-control">
                             <label className="label">
@@ -69,16 +81,16 @@ const JoinUs = () => {
                             {errors.name && <span className="text-red-400">This field is required</span>}
                         </div>
                         <div className="form-control mt-6">
-                            <input className="btn btn-primary" type="submit" value="Sign Up" />
+                            <input className="btn btn-primary" type="submit" value="Join Us" />
                         </div>
                     </form>
-                    <div className=" mt-6 ml-8">
+                    <div className=" mt-6 mx-3">
                         <button onClick={googleAccount} className="bg-white border-2 rounded-2xl text-blue-700 font-medium w-80"><span className='relative top-3'>Sign in with Google</span>
                             <FcGoogle className='size-6 relative bottom-3 left-5'></FcGoogle>
                         </button>
 
                     </div>
-                    <p className="ml-14">You have no account. Please <NavLink to='/register' className='text-blue-600 font-bold'>Register</NavLink></p>
+                    <p className="ml-10 my-3">You have no account. Please <NavLink to='/register' className='text-blue-600 font-bold'>Register</NavLink></p>
                 </div>
                 {
                     success && <p>{success}</p>

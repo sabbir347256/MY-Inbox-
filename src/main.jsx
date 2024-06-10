@@ -22,6 +22,7 @@ import ShowAllComment from './Components/Pages/Dashboard/ShowAllComment';
 import Register from './Components/Pages/JoinUs/Register';
 import Allreport from './Components/Pages/Dashboard/Allreport/Allreport';
 import Announcement from './Components/Pages/Dashboard/MakeAnnouncement/Announcement';
+import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
@@ -61,32 +62,32 @@ const router = createBrowserRouter([
     element: <Dashboard></Dashboard>,
     children: [
       {
-        path: 'dashboard/myprofile',
-        element: <UserProfile></UserProfile>
+        path: 'myprofile',
+        element: <PrivateRoute><UserProfile></UserProfile></PrivateRoute>
       },
       {
-        path: 'dashboard/addpost',
-        element: <AddTagPost></AddTagPost>
+        path: 'addpost',
+        element: <PrivateRoute><AddTagPost></AddTagPost></PrivateRoute>
       },
       {
-        path: 'dashboard/mypost',
-        element: <Mypost></Mypost>
+        path: 'mypost',
+        element: <PrivateRoute><Mypost></Mypost></PrivateRoute>
       },
       {
-        path: 'dashboard/manageuser',
-        element: <UserManage></UserManage>
+        path: 'manageuser',
+        element: <PrivateRoute><UserManage></UserManage></PrivateRoute>
       },
       {
-        path : 'dashboard/adminprofile',
-        element : <AdminProfile></AdminProfile>
+        path : 'adminprofile',
+        element : <PrivateRoute><AdminProfile></AdminProfile></PrivateRoute>
       },
       {
-        path : 'dashboard/allReport',
-        element : <Allreport></Allreport>
+        path : 'allReport',
+        element : <PrivateRoute><Allreport></Allreport></PrivateRoute>
       },
       {
-        path : 'dashboard/announcement',
-        element : <Announcement></Announcement>
+        path : 'announcement',
+        element : <PrivateRoute><Announcement></Announcement></PrivateRoute>
       },
     ]
   }

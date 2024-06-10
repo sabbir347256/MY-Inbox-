@@ -12,27 +12,27 @@ const Dashboard = () => {
                 <div className="  md:min-h-screen bg-orange-400 ">
                     <ul className="menu w-screen md:w-auto md:p-4">
                         {
-                            role === 'admin' && <li className="font-medium text-base "><NavLink to='dashboard/adminprofile'>Admin Profile</NavLink></li>
+                            role === 'admin' && <li className="font-medium text-base "><NavLink to='adminprofile'>Admin Profile</NavLink></li>
                         }
                         {
-                            role === 'admin' && <li className="font-medium  "><NavLink to='dashboard/allReport'>Reported Comments</NavLink></li>
+                            role === 'admin' && <li className="font-medium  "><NavLink to='allReport'>Reported Comments</NavLink></li>
                         }
                         {
-                            role === 'admin' && <li className="font-medium  "><NavLink to='dashboard/announcement'>Make Announcement
+                            role === 'admin' && <li className="font-medium  "><NavLink to='announcement'>Make Announcement
                             </NavLink></li>
                         }
                         {
-                            role === 'admin' && <li className="font-medium  "><NavLink to='dashboard/manageuser'>Manage Users</NavLink></li>
+                            role === 'admin' && <li className="font-medium  "><NavLink to='manageuser'>Manage Users</NavLink></li>
                         }
                         
                         {
-                            role === 'guest' && <li className="font-medium  "><NavLink to='dashboard/myprofile'>My Profile</NavLink></li>
+                            role === 'guest' && <li className="font-medium  "><NavLink to='myprofile'>My Profile</NavLink></li>
                         }
                         {
-                            role === 'guest' && <li className="font-medium  "><NavLink to='dashboard/addpost'>Add Post</NavLink></li>
+                            role === 'guest' && <li className="font-medium  "><NavLink to='addpost'>Add Post</NavLink></li>
                         }
                         {
-                            role === 'guest' && <li className="font-medium  "><NavLink to='dashboard/mypost'>My Post</NavLink></li>
+                            role === 'guest' && <li className="font-medium  "><NavLink to='mypost'>My Post</NavLink></li>
                         }
                         
                         

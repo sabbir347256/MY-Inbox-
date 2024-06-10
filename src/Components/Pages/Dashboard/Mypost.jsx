@@ -8,7 +8,7 @@ const Mypost = () => {
 
 
     const { data,isLoading,refetch} = useQuery({
-        queryKey: ['post', user?.email],
+        queryKey: ['GET', user?.email],
         queryFn: () => {
            return fetch(`https://assignment-12-server-site-pi.vercel.app/getaddpost?email=${user?.email}`)
                 .then(res => res.json())
