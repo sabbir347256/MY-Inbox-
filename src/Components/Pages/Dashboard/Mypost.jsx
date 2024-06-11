@@ -26,7 +26,7 @@ const Mypost = () => {
     return (
         <div className="min-h-screen">
             {
-                data?.map(data => <Setmypost key={data._id} data={data} refetch={refetch}></Setmypost>)
+                data?.map((data,index) => <Setmypost key={index} data={data} refetch={refetch}></Setmypost>)
             }
         </div>
     );

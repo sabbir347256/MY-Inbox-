@@ -59,7 +59,7 @@ const router = createBrowserRouter([
   },
   {
     path: 'dashboard',
-    element: <Dashboard></Dashboard>,
+    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children: [
       {
         path: 'myprofile',
@@ -84,7 +84,8 @@ const router = createBrowserRouter([
       },
       {
         path : 'allReport',
-        element : <PrivateRoute><Allreport></Allreport></PrivateRoute>
+        element : <PrivateRoute><Allreport></Allreport></PrivateRoute>,
+        loader : () => fetch('http://localhost:5000/reportCount')
       },
       {
         path : 'announcement',
