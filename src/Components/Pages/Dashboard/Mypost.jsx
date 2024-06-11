@@ -4,29 +4,29 @@ import Setmypost from "./Setmypost";
 import { useQuery } from "@tanstack/react-query";
 
 const Mypost = () => {
-    const { user } = useContext(AuthProvider);
+    const { user ,loading} = useContext(AuthProvider);
 
 
-    const { data,isLoading,refetch} = useQuery({
-        queryKey: ['GET', user?.email],
+    const { data : mypost = [],isLoading,refetch} = useQuery({
+        queryKey: ['MyPost', user?.email],
+        enabled : !loading || !!user?.email ,
         queryFn: () => {
-           return fetch(`https://assignment-12-server-site-pi.vercel.app/getaddpost?email=${user?.email}`)
+           return fetch(`http://localhost:5000/getaddpost/${user?.email}`)
                 .then(res => res.json())
                 .then(data => {
-                    const filterData = data?.filter(singleData => singleData?.email == user?.email)
-                    return filterData;
+                    return data;
                 })
         }
     });
 
-    if(isLoading){
+    if(isLoading || loading){
         return <p className="text-red-600 text-center"><span className="loading loading-infinity loading-lg"></span></p>;
     }
 
     return (
         <div className="min-h-screen">
             {
-                data?.map((data,index) => <Setmypost key={index } data={data} refetch={refetch}></Setmypost>)
+                mypost?.map((data,index) => <Setmypost key={index } data={data} refetch={refetch}></Setmypost>)
             }
         </div>
     );

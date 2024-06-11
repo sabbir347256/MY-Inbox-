@@ -36,21 +36,16 @@ const Authcontext = ({ children }) => {
 
             if (currentUser) {
                 saveuser(currentUser);
-                console.log(currentUser)
             }
             setLoading(false);
 
             if (currentUser) {
                 axios.post('http://localhost:5000/jwt',loggedUser, {withCredentials : true})
-                .then(res => {
-                    console.log(res)
-                })
+                
               
             } else {
                 axios.post('http://localhost:5000/logout',loggedUser, {withCredentials : true})
-                .then(res => {
-                    console.log(res)
-                })
+                
             }
 
         });

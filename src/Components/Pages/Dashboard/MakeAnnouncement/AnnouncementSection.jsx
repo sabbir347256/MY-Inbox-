@@ -3,7 +3,7 @@ import AnnouncementCard from "./AnnouncementCard ";
 
 const AnnouncementSection = () => {
     const { data, isLoading } = useQuery({
-        queryKey: ['GET'],
+        queryKey: ['Announcement'],
         queryFn: () => {
             return fetch('https://assignment-12-server-site-pi.vercel.app/announcement')
                 .then(res => res.json())
