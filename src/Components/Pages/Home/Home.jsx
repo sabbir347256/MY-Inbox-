@@ -3,6 +3,7 @@ import AllTagPost from "./AllTagPost";
 import Banner from "./Banner";
 import { data } from "autoprefixer";
 import AnnouncementSection from "../Dashboard/MakeAnnouncement/AnnouncementSection";
+import Pagination from "../Pagination/Pagination";
 
 const Home = () => {
     const [addpost, setAddPost] = useState([]);
@@ -21,6 +22,9 @@ const Home = () => {
                 {
                     addpost.map(item => <AllTagPost key={item._id} item={item}></AllTagPost>)
                 }
+            </div>
+            <div className="mt-5">
+                <Pagination></Pagination>
             </div>
         </div>
 

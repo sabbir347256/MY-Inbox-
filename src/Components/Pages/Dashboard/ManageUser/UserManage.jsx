@@ -1,7 +1,11 @@
+import { useLoaderData } from "react-router-dom";
 import UserDataRow from "./UserDataRow ";
 import { useQuery } from "@tanstack/react-query";
 
 const UserManage = () => {
+
+    const usercount = useLoaderData();
+
     const { data, isLoading, } = useQuery({
         queryKey: ['GET'],
         queryFn: () => {
@@ -12,6 +16,17 @@ const UserManage = () => {
                 })
         }
     });
+    // const { data: usercount } = useQuery({
+    //     queryKey: ['GET'],
+    //     queryFn: () => {
+    //         return fetch('http://localhost:5000/userCount')
+    //             .then(res => res.json())
+    //             .then(data => {
+    //                 return data
+    //             })
+    //     }
+    // });
+    console.log(usercount)
 
     if (isLoading) {
         return <p className="text-red-600 text-center"><span className="loading loading-infinity loading-lg"></span></p>;

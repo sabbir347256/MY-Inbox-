@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 
 const Pagination = ({ users, usersPerPage }) => {
     const [currentPage, setCurrentPage] = useState(1);
-    const totalPages = Math.ceil(users.length / usersPerPage);
+    const totalPages = Math.ceil(users?.length / usersPerPage);
 
     const handleClick = (event) => {
         setCurrentPage(Number(event.target.id));
@@ -30,12 +30,12 @@ const Pagination = ({ users, usersPerPage }) => {
 
     const indexOfLastUser = currentPage * usersPerPage;
     const indexOfFirstUser = indexOfLastUser - usersPerPage;
-    const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
+    const currentUsers = users?.slice(indexOfFirstUser, indexOfLastUser);
 
     return (
         <div>
             <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {currentUsers.map((user, index) => (
+                {currentUsers?.map((user, index) => (
                     <li key={index} className="border p-4 rounded">
                         {user.name}
                     </li>

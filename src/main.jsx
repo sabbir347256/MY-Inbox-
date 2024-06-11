@@ -75,7 +75,8 @@ const router = createBrowserRouter([
       },
       {
         path: 'manageuser',
-        element: <PrivateRoute><UserManage></UserManage></PrivateRoute>
+        element: <PrivateRoute><UserManage></UserManage></PrivateRoute>,
+        loader : () => fetch('http://localhost:5000/userCount')
       },
       {
         path : 'adminprofile',
