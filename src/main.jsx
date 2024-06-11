@@ -71,7 +71,8 @@ const router = createBrowserRouter([
       },
       {
         path: 'mypost',
-        element: <PrivateRoute><Mypost></Mypost></PrivateRoute>
+        element: <PrivateRoute><Mypost></Mypost></PrivateRoute>,
+        loader :() => fetch('http://localhost:5000/mypostCount')
       },
       {
         path: 'manageuser',
