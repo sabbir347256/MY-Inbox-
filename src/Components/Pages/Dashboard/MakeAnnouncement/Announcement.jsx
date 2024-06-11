@@ -14,7 +14,7 @@ const Announcement = () => {
         const user1 = { title, descrip, imageurl, announceTitle };
         // console.log(user1)
 
-         fetch(`http://localhost:5000/announcement`, {
+         fetch(`https://assignment-12-server-site-pi.vercel.app/announcement`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

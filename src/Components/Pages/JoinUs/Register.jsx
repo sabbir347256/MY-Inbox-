@@ -46,7 +46,7 @@ const Register = () => {
                         timer: 1500
                     })
                 );
-                fetch(`http://localhost:5000/registerUser`, {
+                fetch(`https://assignment-12-server-site-pi.vercel.app/registerUser`, {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

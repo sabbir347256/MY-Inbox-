@@ -14,7 +14,7 @@ const UserManage = () => {
     const { data, isLoading,refetch } = useQuery({
         queryKey: ['GET',currentPage,itemPerPage],
         queryFn: () => {
-            return fetch(`http://localhost:5000/users?page=${currentPage}&size=${itemPerPage}`)
+            return fetch(`https://assignment-12-server-site-pi.vercel.app/users?page=${currentPage}&size=${itemPerPage}`)
                 .then(res => res.json())
                 .then(data => {
                     return data
@@ -25,7 +25,7 @@ const UserManage = () => {
     // const { data:userCount } = useQuery({
     //     queryKey: ['GET'],
     //     queryFn: () => {
-    //         return fetch(`http://localhost:5000/users?page=${currentPage}&size=${itemPerPage}`)
+    //         return fetch(`https://assignment-12-server-site-pi.vercel.app/users?page=${currentPage}&size=${itemPerPage}`)
     //             .then(res => res.json())
     //             .then(data => {
     //                 return data

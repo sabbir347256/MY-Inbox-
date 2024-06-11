@@ -72,12 +72,12 @@ const router = createBrowserRouter([
       {
         path: 'mypost',
         element: <PrivateRoute><Mypost></Mypost></PrivateRoute>,
-        loader :() => fetch('http://localhost:5000/mypostCount')
+        loader :() => fetch('https://assignment-12-server-site-pi.vercel.app/mypostCount')
       },
       {
         path: 'manageuser',
         element: <PrivateRoute><UserManage></UserManage></PrivateRoute>,
-        loader : () => fetch('http://localhost:5000/userCount')
+        loader : () => fetch('https://assignment-12-server-site-pi.vercel.app/userCount')
       },
       {
         path : 'adminprofile',
@@ -86,7 +86,7 @@ const router = createBrowserRouter([
       {
         path : 'allReport',
         element : <PrivateRoute><Allreport></Allreport></PrivateRoute>,
-        loader : () => fetch('http://localhost:5000/reportCount')
+        loader : () => fetch('https://assignment-12-server-site-pi.vercel.app/reportCount')
       },
       {
         path : 'announcement',

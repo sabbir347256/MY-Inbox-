@@ -5,7 +5,7 @@ const AnnouncementSection = () => {
     const { data, isLoading } = useQuery({
         queryKey: ['GET'],
         queryFn: () => {
-            return fetch('http://localhost:5000/announcement')
+            return fetch('https://assignment-12-server-site-pi.vercel.app/announcement')
                 .then(res => res.json())
                 .then(data => {
                     return data

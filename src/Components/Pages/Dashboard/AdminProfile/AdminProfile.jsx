@@ -13,7 +13,7 @@ const AdminProfile = () => {
     const { data, isloading } = useQuery({
         queryKey: ['role'],
         queryFn: async () =>
-            fetch(`http://localhost:5000/getaddpost`)
+            fetch(`https://assignment-12-server-site-pi.vercel.app/getaddpost`)
                 .then(res => res.json())
                 .then(data => {
                     return data
@@ -21,7 +21,7 @@ const AdminProfile = () => {
     })
 
     useEffect(() => {
-        fetch(`http://localhost:5000/comment`)
+        fetch(`https://assignment-12-server-site-pi.vercel.app/comment`)
             .then(res => res.json())
             .then(data => {
                 setComment(data)
@@ -30,7 +30,7 @@ const AdminProfile = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/showallreport`)
+        fetch(`https://assignment-12-server-site-pi.vercel.app/showallreport`)
             .then(res => res.json())
             .then(data => {
                 setreport(data)
