@@ -1,14 +1,48 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext} from "react";
 import { BiSolidDownvote, BiSolidUpvote } from "react-icons/bi";
 import { AuthProvider } from "../../../Authprovider/Authcontext";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import useRole from "../Hooks/useRole";
 const AddTagPost = () => {
 
     const {user} = useContext(AuthProvider);
-    const [specifiquserPost,setSpecifiqUserPost] = useState([]);
+    const [role] = useRole();
+    console.log(role)
+    // const [specifiquserPost,setSpecifiqUserPost] = useState([]);
+    const navigate = useNavigate();
 
+    const { data : allpost = [],refetch} = useQuery({
+        queryKey: ['allPost', user?.email],
+        queryFn: () => {
+           return fetch(`http://localhost:5000/getaddpost/${user?.email}`)
+                .then(res => res.json())
+                .then(data => {
+                    return data;
+                })
+        }
+    });
+    console.log(allpost)
+
+    const { data : paymentUser = []} = useQuery({
+        queryKey: ['PaymentUser', user?.email],
+        queryFn: () => {
+           return fetch(`http://localhost:5000/paymentUser/${user?.email}`)
+                .then(res => res.json())
+                .then(data => {
+                    return data;
+                })
+        }
+    });
 
     const handleSubmit = e => {
         e.preventDefault();
+
+        if(paymentUser.role !== 'Gold Badge' && allpost.length === 2){
+            return alert('you are not membership')
+        }
+
         const form = e.target;
         const email = form.email.value;
         const title = form.title.value;
@@ -22,7 +56,7 @@ const AddTagPost = () => {
         const user1 = { title, descrip, imageurl,downbote,upvote,postTitle,postTime, inputField, email };
         console.log(user1)
         
-        fetch(`https://assignment-12-server-site-pi.vercel.app/addpost`, {
+        fetch(`http://localhost:5000/addpost`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -31,22 +65,27 @@ const AddTagPost = () => {
         })
             .then(res => res.json())
             .then(data => {
-
+                if(data){
+                    Swal.fire({
+                        title: "Success!",
+                        text: "Successfully post.",
+                        icon: "success"
+                    });
+                }
+                navigate(location?.state ? location.state : '/')
             })
     }
 
-    useEffect(() => {
-        fetch(`https://assignment-12-server-site-pi.vercel.app/getaddpost?email=${user?.email}`)
-            .then(res => res.json())
-            .then(data => {
-                const filterData = data?.filter(singleData => singleData?.email == user?.email)
-                setSpecifiqUserPost(filterData);
-            })
-    }, [user?.email]);
+   
 
-    if(specifiquserPost.length > 5 ){
-        alert('You have allready 5 post.More than post please Collect membership')
-    }
+    // useEffect(() => {
+    //     fetch(`https://assignment-12-server-site-pi.vercel.app/getaddpost?email=${user?.email}`)
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             const filterData = data?.filter(singleData => singleData?.email == user?.email)
+    //             setSpecifiqUserPost(filterData);
+    //         })
+    // }, [user?.email]);
 
     
     return (
