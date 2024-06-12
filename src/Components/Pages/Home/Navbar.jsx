@@ -5,11 +5,24 @@ import Swal from "sweetalert2";
 import HostModal from "../HostRequestModal/HostRequestModal";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { FaBars, FaBell, FaTimes, FaUserCircle } from "react-icons/fa";
+import { FaBars, FaTimes, FaUserCircle } from "react-icons/fa";
 import useRole from './../Hooks/useRole';
+import { useQuery } from "@tanstack/react-query";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+
+    const { data } = useQuery({
+        queryKey: ['Notification'],
+        queryFn: () => {
+            return fetch('https://assignment-12-server-site-pi.vercel.app/announcement')
+                .then(res => res.json())
+                .then(data => {
+                    return data
+                })
+        }
+    });
+
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -119,9 +132,12 @@ const Navbar = () => {
                         </div>
                         <HostModal isOpen={isModalOpen} closeModal={closeModal} modalHandle={modalHandle}></HostModal>
                         <div className="flex items-center space-x-4 mt-4 md:mt-0">
-                            <a href="/notifications" className="text-black text-lg">
-                                <FaBell />
-                            </a>
+                            <button className="btn btn-ghost btn-circle">
+                                <div className="indicator">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
+                                    <span className="badge badge-xs badge-primary indicator-item">{data?.length}</span>
+                                </div>
+                            </button>
                             <div className="relative group z-10">
                                 {
                                     user ? <img className=" rounded-full w-12 cursor-pointer" src={user?.photoURL} alt="" /> : <FaUserCircle className="text-black text-2xl cursor-pointer" />

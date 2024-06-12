@@ -1,4 +1,4 @@
-import {useState } from "react";
+import { useState } from "react";
 import AllTagPost from "./AllTagPost";
 
 import AnnouncementSection from "../Dashboard/MakeAnnouncement/AnnouncementSection";
@@ -6,12 +6,12 @@ import Pagination from "../Pagination/Pagination";
 import { useQuery } from "@tanstack/react-query";
 
 const Home = () => {
-    const [search,setSearch] = useState('');
+    const [search, setSearch] = useState('');
 
-    const { data,refetch} = useQuery({
+    const { data, refetch } = useQuery({
         queryKey: ['GET'],
         queryFn: () => {
-           return fetch(`http://localhost:5000/getaddpost?search=${search}`)
+            return fetch(`http://localhost:5000/getaddpost?search=${search}`)
                 .then(res => res.json())
                 .then(data => {
                     return data;
@@ -19,14 +19,8 @@ const Home = () => {
         }
     });
 
-    // useEffect(() => {
-    //     fetch('https://assignment-12-server-site-pi.vercel.app/getaddpost')
-    //         .then(res => res.json())
-    //         .then(data => setAddPost(data))
-    // }, [])
 
-
-    const handleButton =()=>{
+    const handleButton = () => {
         refetch();
     }
 
@@ -40,7 +34,7 @@ const Home = () => {
                     <p className="text-lg mb-8 text-center">Stay connected with your friends and family through our seamless chat experience.</p>
                     <div className="flex justify-center">
                         <input
-                        onChange={(e) => setSearch(e.target.value)}
+                            onChange={(e) => setSearch(e.target.value)}
                             type="text"
                             placeholder="Search..."
                             className="w-full text-black max-w-md px-4 py-2 rounded-l-md border-none focus:ring-2 focus:ring-blue-400 outline-none"
@@ -49,6 +43,11 @@ const Home = () => {
                             Search
                         </button>
                     </div>
+                </div>
+            </div>
+            <div>
+                <div className="bg-white shadow-md rounded-lg p-6 mb-4 text-center">
+                    <p className="text-gray-700"><span className="font-bold">Here is all tags for search : </span> Traveling,Bloging,Entertainment</p>
                 </div>
             </div>
             <AnnouncementSection></AnnouncementSection>
