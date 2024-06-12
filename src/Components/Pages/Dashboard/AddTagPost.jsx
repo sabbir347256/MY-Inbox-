@@ -35,7 +35,7 @@ const AddTagPost = () => {
     const handleSubmit = e => {
         e.preventDefault();
 
-        if (paymentUser.role !== 'Gold Badge' && allpost.length === 2) {
+        if (paymentUser.role !== 'Gold Badge' && allpost.length === 5) {
             return Swal.fire({
                 title: "You are not membership for this site.Please go to membership page and got membership badge",
                 text: "That thing is still around?",
@@ -90,7 +90,7 @@ const AddTagPost = () => {
     return (
         <div className=' min-h-screen raleway bg-gray-100'>
             {
-                allpost?.length === 2 ? <div className="text-center pt-5"><button className="btn btn-primary"><NavLink to='/membership'>Membership</NavLink></button></div> : ''
+                allpost?.length === 5 ? <div className="text-center pt-5"><button className="btn btn-primary"><NavLink to='/membership'>Membership</NavLink></button></div> : ''
             }
             <form onSubmit={handleSubmit} className="top-10 md:top-10 lg:top-0 p-10 lg:p-16 lg:pl-20 relative">
                 <div className="flex flex-col md:flex-row lg:flex-row border-2 w-[300px] md:w-[690px] lg:w-[1000px] rounded-lg bg-white justify-center  pb-32  lg:pb-28 pt-10 lg:pt-28">
