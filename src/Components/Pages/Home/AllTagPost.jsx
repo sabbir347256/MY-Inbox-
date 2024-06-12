@@ -14,7 +14,7 @@ const AllTagPost = ({ item }) => {
                     <div className="badge badge-outline px-8 py-3">{postTime}</div>
                     <div className="badge badge-outline px-8 py-3">{inputField}</div>
                 </div>
-                <NavLink to={`/getaddpost/${_id}`}><button className="btn mt-5 w-full  bg-[#97BE5A] ">Show Details</button></NavLink>
+                <NavLink to={`/getaddpost/${_id}`}><button className="btn mt-5 w-full text-black  bg-[#97BE5A] ">Show Details</button></NavLink>
                 
             </div>
         </div>

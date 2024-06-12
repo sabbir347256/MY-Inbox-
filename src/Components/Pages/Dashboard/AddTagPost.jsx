@@ -13,7 +13,7 @@ const AddTagPost = () => {
     const { data: allpost = [] } = useQuery({
         queryKey: ['allPost', user?.email],
         queryFn: () => {
-            return fetch(`http://localhost:5000/getaddpost/${user?.email}`)
+            return fetch(`https://assignment-12-server-site-pi.vercel.app/getaddpost/${user?.email}`)
                 .then(res => res.json())
                 .then(data => {
                     return data;
@@ -24,7 +24,7 @@ const AddTagPost = () => {
     const { data: paymentUser = [] } = useQuery({
         queryKey: ['PaymentUser', user?.email],
         queryFn: () => {
-            return fetch(`http://localhost:5000/paymentUser/${user?.email}`)
+            return fetch(`https://assignment-12-server-site-pi.vercel.app/paymentUser/${user?.email}`)
                 .then(res => res.json())
                 .then(data => {
                     return data;
@@ -55,7 +55,7 @@ const AddTagPost = () => {
         const upvote = form.upvote.value;
         const user1 = { title, descrip, imageurl, downbote, upvote, postTitle, postTime, inputField, email };
 
-        fetch(`http://localhost:5000/addpost`, {
+        fetch(`https://assignment-12-server-site-pi.vercel.app/addpost`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

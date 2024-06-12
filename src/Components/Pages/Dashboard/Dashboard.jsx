@@ -12,32 +12,32 @@ const Dashboard = () => {
                 <div className="  md:min-h-screen bg-orange-400 ">
                     <ul className="menu w-screen md:w-auto md:p-4">
                         {
-                            role === 'admin' && <li className="font-medium text-base "><NavLink to='adminprofile'>Admin Profile</NavLink></li>
+                            role === 'admin' && <li className="font-medium text-base "><NavLink className='text-black' to='adminprofile'>Admin Profile</NavLink></li>
                         }
                         {
-                            role === 'admin' && <li className="font-medium  "><NavLink to='allReport'>Reported Comments</NavLink></li>
+                            role === 'admin' && <li className="font-medium  "><NavLink className='text-black' to='allReport'>Reported Comments</NavLink></li>
                         }
                         {
-                            role === 'admin' && <li className="font-medium  "><NavLink to='announcement'>Make Announcement
+                            role === 'admin' && <li className="font-medium  "><NavLink className='text-black' to='announcement'>Make Announcement
                             </NavLink></li>
                         }
                         {
-                            role === 'admin' && <li className="font-medium  "><NavLink to='manageuser'>Manage Users</NavLink></li>
+                            role === 'admin' && <li className="font-medium  "><NavLink className='text-black' to='manageuser'>Manage Users</NavLink></li>
                         }
                         
                         {
-                            role === 'guest' && <li className="font-medium  "><NavLink to='myprofile'>My Profile</NavLink></li>
+                            role === 'guest' && <li className="font-medium  "><NavLink className='text-black' to='myprofile'>My Profile</NavLink></li>
                         }
                         {
-                            role === 'guest' && <li className="font-medium  "><NavLink to='addpost'>Add Post</NavLink></li>
+                            role === 'guest' && <li className="font-medium  "><NavLink className='text-black' to='addpost'>Add Post</NavLink></li>
                         }
                         {
-                            role === 'guest' && <li className="font-medium  "><NavLink to='mypost'>My Post</NavLink></li>
+                            role === 'guest' && <li className="font-medium  "><NavLink className='text-black' to='mypost'>My Post</NavLink></li>
                         }
                         
                         
                         <hr className="my-10" />
-                        <li className="font-medium text-base"><NavLink to='/'>Home</NavLink></li>
+                        <li className="font-medium text-base"><NavLink className='text-black' to='/'>Home</NavLink></li>
                     </ul>
                 </div>
                 <div className="flex-1">

@@ -11,7 +11,7 @@ const Home = () => {
     const { data, refetch } = useQuery({
         queryKey: ['GET'],
         queryFn: () => {
-            return fetch(`http://localhost:5000/getaddpost?search=${search}`)
+            return fetch(`https://assignment-12-server-site-pi.vercel.app/getaddpost?search=${search}`)
                 .then(res => res.json())
                 .then(data => {
                     return data;

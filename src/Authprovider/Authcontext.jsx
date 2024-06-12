@@ -40,11 +40,11 @@ const Authcontext = ({ children }) => {
             setLoading(false);
 
             if (currentUser) {
-                axios.post('http://localhost:5000/jwt',loggedUser, {withCredentials : true})
+                axios.post('https://assignment-12-server-site-pi.vercel.app/jwt',loggedUser, {withCredentials : true})
                 
               
             } else {
-                axios.post('http://localhost:5000/logout',loggedUser, {withCredentials : true})
+                axios.post('https://assignment-12-server-site-pi.vercel.app/logout',loggedUser, {withCredentials : true})
                 
             }
 

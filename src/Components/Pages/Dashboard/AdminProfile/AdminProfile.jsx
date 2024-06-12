@@ -63,7 +63,7 @@ const AdminProfile = () => {
         const upvote = form.upvote.value;
         const user1 = { title, descrip, imageurl, downbote, upvote, postTitle, postTime, inputField, email };
 
-        fetch(`http://localhost:5000/addpost`, {
+        fetch(`https://assignment-12-server-site-pi.vercel.app/addpost`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

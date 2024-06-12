@@ -11,7 +11,7 @@ const Mypost = () => {
         queryKey: ['MyPost', user?.email],
         enabled : !loading || !!user?.email ,
         queryFn: () => {
-           return fetch(`http://localhost:5000/getaddpost/${user?.email}`)
+           return fetch(`https://assignment-12-server-site-pi.vercel.app/getaddpost/${user?.email}`)
                 .then(res => res.json())
                 .then(data => {
                     return data;
