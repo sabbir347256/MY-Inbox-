@@ -62,7 +62,7 @@ const ShowDetails = () => {
     return (
         <div className="bg-gray-100 min-h-screen libre-font pb-5">
             <div className="max-w-6xl mx-auto">
-                <h2 className="text-center text-4xl font-extrabold pt-10">Post Details Information</h2>
+                <h2 className="text-center text-4xl font-extrabold pt-10 text-black">Post Details Information</h2>
                 <div className="grid md:grid-cols-5 lg:grid-cols-5 pt-16 px-5 ml-8">
                     <div className="col-span-3 pr-12 relative top-52 md:top-0 lg:top-0 left-2 md:left-0 lg:left-0">
                         <h2><span className="text-red-600 font-bold">Assignment Name :</span> <br /> <span className="font-extrabold text-4xl"> {title}</span></h2>
