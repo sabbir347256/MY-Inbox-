@@ -1,34 +1,30 @@
-import { useContext} from "react";
+import { useContext } from "react";
 import { BiSolidDownvote, BiSolidUpvote } from "react-icons/bi";
 import { AuthProvider } from "../../../Authprovider/Authcontext";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import useRole from "../Hooks/useRole";
 const AddTagPost = () => {
 
-    const {user} = useContext(AuthProvider);
-    const [role] = useRole();
-    console.log(role)
+    const { user } = useContext(AuthProvider);
     // const [specifiquserPost,setSpecifiqUserPost] = useState([]);
     const navigate = useNavigate();
 
-    const { data : allpost = [],refetch} = useQuery({
+    const { data: allpost = [] } = useQuery({
         queryKey: ['allPost', user?.email],
         queryFn: () => {
-           return fetch(`http://localhost:5000/getaddpost/${user?.email}`)
+            return fetch(`http://localhost:5000/getaddpost/${user?.email}`)
                 .then(res => res.json())
                 .then(data => {
                     return data;
                 })
         }
     });
-    console.log(allpost)
 
-    const { data : paymentUser = []} = useQuery({
+    const { data: paymentUser = [] } = useQuery({
         queryKey: ['PaymentUser', user?.email],
         queryFn: () => {
-           return fetch(`http://localhost:5000/paymentUser/${user?.email}`)
+            return fetch(`http://localhost:5000/paymentUser/${user?.email}`)
                 .then(res => res.json())
                 .then(data => {
                     return data;
@@ -39,8 +35,12 @@ const AddTagPost = () => {
     const handleSubmit = e => {
         e.preventDefault();
 
-        if(paymentUser.role !== 'Gold Badge' && allpost.length === 2){
-            return alert('you are not membership')
+        if (paymentUser.role !== 'Gold Badge' && allpost.length === 2) {
+            return Swal.fire({
+                title: "You are not membership for this site.Please go to membership page and got membership badge",
+                text: "That thing is still around?",
+                icon: "question"
+              });
         }
 
         const form = e.target;
@@ -48,14 +48,13 @@ const AddTagPost = () => {
         const title = form.title.value;
         const postTitle = form.postTitle.value;
         const descrip = form.descrip.value;
-        const imageurl = user ? user?.photoURL : form.imageurl.value ;
+        const imageurl = form.imageurl.value;
         const inputField = form.inputField.value;
         const postTime = form.postTime.value;
         const downbote = form.downbote.value;
         const upvote = form.upvote.value;
-        const user1 = { title, descrip, imageurl,downbote,upvote,postTitle,postTime, inputField, email };
-        console.log(user1)
-        
+        const user1 = { title, descrip, imageurl, downbote, upvote, postTitle, postTime, inputField, email };
+
         fetch(`http://localhost:5000/addpost`, {
             method: 'POST',
             headers: {
@@ -65,7 +64,7 @@ const AddTagPost = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if(data){
+                if (data) {
                     Swal.fire({
                         title: "Success!",
                         text: "Successfully post.",
@@ -76,7 +75,7 @@ const AddTagPost = () => {
             })
     }
 
-   
+
 
     // useEffect(() => {
     //     fetch(`https://assignment-12-server-site-pi.vercel.app/getaddpost?email=${user?.email}`)
@@ -87,9 +86,12 @@ const AddTagPost = () => {
     //         })
     // }, [user?.email]);
 
-    
+
     return (
         <div className=' min-h-screen raleway bg-gray-100'>
+            {
+                allpost?.length === 2 ? <div className="text-center pt-5"><button className="btn btn-primary"><NavLink to='/membership'>Membership</NavLink></button></div> : ''
+            }
             <form onSubmit={handleSubmit} className="top-10 md:top-10 lg:top-0 p-10 lg:p-16 lg:pl-20 relative">
                 <div className="flex flex-col md:flex-row lg:flex-row border-2 w-[300px] md:w-[690px] lg:w-[1000px] rounded-lg bg-white justify-center  pb-32  lg:pb-28 pt-10 lg:pt-28">
                     <div className="mr-10  mt-3">

@@ -39,7 +39,7 @@ const Announcement = () => {
     return (
         <div className=' min-h-screen raleway bg-gray-100'>
             <form onSubmit={handleSubmit} className="top-10 md:top-10 lg:top-0 p-10 lg:p-16 lg:pl-20  relative">
-                <div className="flex flex-col md:flex-row lg:flex-row border-2 w-[300px] md:w-[690px] lg:w-[1000px] rounded-lg bg-white justify-center pb-32 lg:pb-28 pt-10 lg:pt-28">
+                <div className="flex flex-col md:flex-row lg:flex-row border-2 w-[300px] md:w-[500px] lg:w-[1000px] rounded-lg bg-white justify-center pb-32 lg:pb-28 pt-10 lg:pt-28">
                     <div className="mr-10  mt-3">
                         <h2 className="text-center">Author Image</h2>
                         <input type="text" name='imageurl' className=" relative left-5 w-64 lg:w-96 p-2 border-2 border-black rounded-md" placeholder="Image Url" required />

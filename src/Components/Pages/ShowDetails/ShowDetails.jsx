@@ -3,6 +3,7 @@ import { BiSolidDownvote, BiSolidUpvote } from "react-icons/bi";
 import { useLoaderData, useParams } from "react-router-dom";
 import { AuthProvider } from "../../../Authprovider/Authcontext";
 import SetComment from "./SetComment";
+import { FacebookShareButton } from "react-share";
 
 const ShowDetails = () => {
     const { user } = useContext(AuthProvider)
@@ -26,7 +27,7 @@ const ShowDetails = () => {
         const comment = e.target.comment.value;
         setComment('')
         const userComment = {
-            postId :  id,
+            postId: id,
             comment: comment,
             name: user?.displayName,
             email: user?.email
@@ -59,7 +60,7 @@ const ShowDetails = () => {
 
 
     return (
-        <div className="bg-gray-100 min-h-screen libre-font">
+        <div className="bg-gray-100 min-h-screen libre-font pb-5">
             <div className="max-w-6xl mx-auto">
                 <h2 className="text-center text-4xl font-extrabold pt-10">Post Details Information</h2>
                 <div className="grid  md:grid-cols-5 lg:grid-cols-5 pt-16 px-5 ml-8">
@@ -85,7 +86,12 @@ const ShowDetails = () => {
                             <input className="btn my-4 bg-[#F97300] btn-success text-white" type="submit" value="Comment" /> <br />
                         </form>
                         {/* <button className="btn bg-[#F97300] btn-success mr-4 text-white mb-16 md:mb-0 lg:mb-0 relative left-10 md:left-0 lg:left-0" onClick={() => document.getElementById('my_modal_1').showModal()}>Comment</button> */}
-                        <button className="btn btn-primary bg-[#F97300] text-white mb-16 md:mb-0 lg:mb-0 relative left-10 md:left-0 lg:left-0">Share</button>
+                        <button className="btn btn-primary bg-[#F97300] text-white mb-16 md:mb-0 lg:mb-0 relative left-10 md:left-0 lg:left-0"><FacebookShareButton
+                            url="facebook.com"
+                        >
+                            Share to Facebook
+                        </FacebookShareButton>
+                        </button>
 
                     </div>
                     <div className="col-span-2 relative bottom-[700px] md:bottom-0 lg:bottom-0 left-5 md:left-0 lg:left-0">

@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { FaBars, FaTimes, FaUserCircle } from "react-icons/fa";
 import useRole from './../Hooks/useRole';
 import { useQuery } from "@tanstack/react-query";
+import logo from '../../../image/logo.png'
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -110,7 +111,10 @@ const Navbar = () => {
         <div>
             <nav className="bg-gray-200 p-4">
                 <div className="container mx-auto flex justify-between items-center">
-                    <a href="/" className="text-black text-xl font-bold">MY-INBOX</a>
+                    <div className="flex items-center gap-2">
+                        <img className="rounded-full w-8" src={logo} alt="" />
+                        <a href="/" className="text-black text-xl font-bold">MY-INBOX</a>
+                    </div>
                     <div className="flex items-center md:hidden">
                         <button onClick={toggleMenu} className="text-black focus:outline-none">
                             {isOpen ? <FaTimes /> : <FaBars />}
