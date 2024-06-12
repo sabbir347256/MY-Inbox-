@@ -5,6 +5,7 @@ import bronzebadge from '../../../image/bronze.png'
 import { NavLink } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import useRole from "../Hooks/useRole";
+import userBg from '../../../image/adminbg.jpg'
 const UserProfile = () => {
     const { user, loading } = useContext(AuthProvider);
     const [role] = useRole();
@@ -30,10 +31,10 @@ const UserProfile = () => {
                 }
             </div>
             <div className='flex justify-center mt-32'>
-                <div className='bg-white shadow-lg rounded-2xl w-3/5'>
+                <div className='bg-gray-100 shadow-lg rounded-2xl w-3/5 '>
                     <img
                         alt='profile'
-                        src='https://wallpapercave.com/wp/wp10784415.jpg'
+                        src={userBg}
                         className='w-full mb-4 rounded-t-lg h-36'
                     />
                     {

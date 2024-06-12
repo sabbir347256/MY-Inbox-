@@ -11,7 +11,7 @@
     background-size: cover;
   }
 .allPostBg{
-    background-image: linear-gradient(90deg, rgba(11, 78, 80, 0.8) 100%, rgba(241, 4, 230, 0) 100%), url(./image/allpostbg.jpg);
+    background-image: linear-gradient(360deg, rgba(95, 97, 97, 0.8) 30%, rgba(250, 249, 250, 0)70%), url(./image/postbg.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
