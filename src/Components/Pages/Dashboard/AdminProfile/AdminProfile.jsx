@@ -175,41 +175,41 @@ const AdminProfile = () => {
                     />
                 </PieChart>
             </div>
-            <div className=' min-h-screen raleway bg-gray-100'>     
-                <form onSubmit={handleSubmit} className="top-10 md:top-10 lg:top-0 p-10 md:p-0 lg:p-16 pl-0 md:pl-0 lg:pl-20 relative">
+            <div className=' min-h-screen raleway bg-gray-100 pl-10 md:pl-0 lg:pl-0'>     
+                <form onSubmit={handleSubmit} className="top-10 md:top-10 lg:top-0 p-10 md:p-0 lg:p-10 pl-0 md:pl-0 lg:pl-20 relative">
                     <div className="flex flex-col md:flex-row lg:flex-row border-2 w-[300px] md:w-[500px] lg:w-[1000px] rounded-lg bg-white justify-center  pb-32  lg:pb-28 pt-10 lg:pt-28">
                         <div className="mr-10  mt-3">
-                            <h2 className="text-center">Author Image</h2>
+                            <h2 className="text-center text-black">Author Image</h2>
                             <input type="text" name='imageurl' className=" relative left-5 w-64 lg:w-96 p-2 border-2 border-black rounded-md" placeholder="Image Url" required />
                             <br />
-                            <h2 className="text-center">Author Name</h2>
+                            <h2 className="text-center text-black">Author Name</h2>
                             <input type="text" name='title' className="relative left-5 w-64 lg:w-96 p-2 border-2 border-black rounded-md" placeholder="Title here" required />
                             <br />
-                            <h2 className="text-center">Author Email</h2>
+                            <h2 className="text-center text-black">Author Email</h2>
                             <input type="email" name='email' className="relative left-5 w-64 lg:w-96 p-2 border-2 border-black rounded-md" placeholder="Title here" required />
                             <br />
-                            <h2 className="text-center">Post Title</h2>
+                            <h2 className="text-center text-black">Post Title</h2>
                             <input type="text" className="relative left-5 w-64 lg:w-96 p-2 border-2 border-black rounded-md" name='postTitle' placeholder="Post title" required />
-                            <h2 className="text-center">Post Time</h2>
+                            <h2 className="text-center text-black">Post Time</h2>
                             <input type="time" className="relative left-5 w-64 lg:w-96 p-2 border-2 border-black rounded-md" name='postTime' placeholder="Post title" required />
                         </div>
                         <div>
-                            <h2 className="text-center">Post Description</h2>
+                            <h2 className="text-center text-black">Post Description</h2>
                             <input type="text" name='descrip' className='p-10 my-3  relative left-5 w-64 lg:w-96 border-2 border-black rounded-md' placeholder="Description" required />
                             <br />
-                            <h2 className="text-center">Select the tag</h2>
+                            <h2 className="text-center text-black">Select the tag</h2>
                             <select className="p-2 border-2 relative left-5 w-64 lg:w-96 border-black rounded-md" name="inputField" id="" required>
-                                <option value="Traveling">Traveling</option>
-                                <option value="Bloging">Bloging</option>
-                                <option value="Entertainment">Entertainment</option>
+                                <option className="text-black" value="Traveling">Traveling</option>
+                                <option className="text-black" value="Bloging">Bloging</option>
+                                <option className="text-black" value="Entertainment">Entertainment</option>
                             </select>
                             <div className="flex items-center justify-center">
-                                <h2>UpVote(please do not filled up)</h2>
+                                <h2 className="text-black">UpVote(please do not filled up)</h2>
                                 <BiSolidUpvote></BiSolidUpvote>
                             </div>
                             <input type="text" name='upvote' defaultValue={0} className=' my-3  relative left-5 w-64 lg:w-96 border-2 border-black rounded-md' placeholder="Description" required />
                             <div className="flex items-center justify-center">
-                                <h2>DownVote(please do not filled up)</h2>
+                                <h2 className="text-black">DownVote(please do not filled up)</h2>
                                 <BiSolidDownvote></BiSolidDownvote>
                             </div>
                             <input type="text" name='downbote' defaultValue={0} className='relative left-5 w-64 lg:w-96 border-2 border-black rounded-md' placeholder="Description" required />
@@ -219,8 +219,8 @@ const AdminProfile = () => {
                         </div> */}
                         </div>
                     </div>
-                    <div className="mt-3 text-center relative bottom-20 lg:right-16">
-                        <button className="btn btn-outline w-64 lg:w-96 font-bold bg-[#a8df43]">Add Post</button>
+                    <div className="mt-3 text-center relative bottom-20 right-2 md:right-0 lg:right-0">
+                        <button className="btn btn-outline text-black w-64 lg:w-96 font-bold bg-[#a8df43]">Add Post</button>
                     </div>
                 </form>
             </div>
