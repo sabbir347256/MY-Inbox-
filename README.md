@@ -1,8 +1,21 @@
-# React + Vite
+Website name : MY_INBOX
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Admin user : sabbir71@gmail.com
+admin pass : Aaaaaa
 
-Currently, two official plugins are available:
+## 🔗 Links live site : https://my-inbox-c638f.web.app/
+## 🔗 Links live site : https://my-inbox-c638f.firebaseapp.com/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+##  Bullet Point feature For my MY_INBOX project :
+
+ - Banner
+ - Feature Section
+ - Faq Section
+ - ViewDetailsBlog Section
+ -  delete section and function
+ - Login and Register section
+ - Payment section
+ - Admin deshboard
+ - User Dashboard 
+ - Manage User section
+ - Footer
